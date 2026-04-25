@@ -41,18 +41,10 @@
         element.removeAttribute('data-view-transition-type');
       });
 
-    const transitionTriggered = document.querySelector('[data-view-transition-triggered]');
-    const transitionType = transitionTriggered?.getAttribute('data-view-transition-type');
-
-    if (transitionType) {
-      viewTransition.types.clear();
-      viewTransition.types.add(transitionType);
-      sessionStorage.setItem('custom-transition-type', transitionType);
-    } else {
-      viewTransition.types.clear();
-      viewTransition.types.add('page-navigation');
-      sessionStorage.removeItem('custom-transition-type');
-    }
+    // Ignore custom transitions to ensure the new smooth framer page reveal applies globally
+    viewTransition.types.clear();
+    viewTransition.types.add('page-navigation');
+    sessionStorage.removeItem('custom-transition-type');
   });
 
   window.addEventListener('pagereveal', async (event) => {
@@ -63,27 +55,8 @@
       return;
     }
 
-    const customTransitionType = sessionStorage.getItem('custom-transition-type');
-
-    if (customTransitionType) {
-      viewTransition.types.clear();
-      viewTransition.types.add(customTransitionType);
-
-      await viewTransition.finished;
-
-      viewTransition.types.clear();
-      viewTransition.types.add('page-navigation');
-
-      idleCallback(() => {
-        sessionStorage.removeItem('custom-transition-type');
-        document.querySelectorAll('[data-view-transition-type]').forEach((element) => {
-          element.removeAttribute('data-view-transition-type');
-        });
-      });
-    } else {
-      viewTransition.types.clear();
-      viewTransition.types.add('page-navigation');
-    }
+    viewTransition.types.clear();
+    viewTransition.types.add('page-navigation');
   });
 
   /**
