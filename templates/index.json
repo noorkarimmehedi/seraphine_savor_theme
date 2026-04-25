@@ -626,11 +626,26 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "divider_Uq8xrG": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
     }
   },
   "order": [
     "hero_RkimKJ",
     "product_list_X8Q7bi",
-    "section_RhpYRt"
+    "section_RhpYRt",
+    "divider_Uq8xrG"
   ]
 }
