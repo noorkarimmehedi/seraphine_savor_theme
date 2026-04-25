@@ -250,7 +250,7 @@ p:empty {
   }
 
   html:active-view-transition-type(page-navigation) main[data-product-transition='true'][data-template*='product'] {
-    view-transition-name: none;
+    view-transition-name: main-content;
   }
 
   ::view-transition-old(main-content) {
@@ -277,8 +277,8 @@ p:empty {
 
   ::view-transition-group(product-image-transition),
   ::view-transition-group(product-details) {
-    animation-duration: var(--animation-speed);
-    animation-timing-function: var(--animation-easing);
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   ::view-transition-old(product-image-transition),
@@ -286,8 +286,8 @@ p:empty {
     block-size: 100%;
     overflow: hidden;
     object-fit: cover;
-    animation-duration: 0.25s;
-    animation-timing-function: var(--animation-easing);
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   ::view-transition-new(product-details) {
