@@ -277,7 +277,7 @@ p:empty {
 
   ::view-transition-group(product-image-transition),
   ::view-transition-group(product-details) {
-    animation-duration: 0.6s;
+    animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -286,7 +286,7 @@ p:empty {
     block-size: 100%;
     overflow: hidden;
     object-fit: cover;
-    animation-duration: 0.6s;
+    animation-duration: 0.8s;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -3389,19 +3389,23 @@ fly-to-cart.fly-to-cart--sticky {
 
 @keyframes framerSlideUp {
   from {
-    transform: translateY(40px);
+    transform: translateY(60px) scale(0.95);
+    filter: blur(8px);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
 @keyframes framerScaleDown {
   from {
     transform: scale(1);
+    filter: blur(0);
   }
   to {
-    transform: scale(0.98);
+    transform: translateY(-40px) scale(0.92);
+    filter: blur(8px);
   }
 }
 
