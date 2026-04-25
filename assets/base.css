@@ -10,7 +10,7 @@ body {
   margin: 0;
   min-height: 100svh;
   font-variation-settings: 'slnt' 0;
-  animation: framerFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) both, framerSlideUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: framerFadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 :root {
@@ -277,8 +277,8 @@ p:empty {
 
   ::view-transition-group(product-image-transition),
   ::view-transition-group(product-details) {
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   ::view-transition-old(product-image-transition),
@@ -286,8 +286,8 @@ p:empty {
     block-size: 100%;
     overflow: hidden;
     object-fit: cover;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   ::view-transition-new(product-details) {
@@ -3388,43 +3388,23 @@ fly-to-cart.fly-to-cart--sticky {
 }
 
 @keyframes framerSlideUp {
-  from {
-    transform: translateY(20px) scale(0.99);
-    filter: blur(2px);
-  }
-  to {
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes framerScaleDown {
-  from {
-    transform: scale(1);
-    filter: blur(0);
-  }
-  to {
-    transform: translateY(-10px) scale(0.99);
-    filter: blur(2px);
-  }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes framerFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes framerFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @keyframes framerTextReveal {
@@ -3439,7 +3419,7 @@ fly-to-cart.fly-to-cart--sticky {
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
-  animation: framerTextReveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: framerTextReveal 0.5s cubic-bezier(0.25, 1, 0.5, 1) both;
   animation-delay: 0.1s;
 }
 
