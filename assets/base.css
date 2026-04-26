@@ -10,7 +10,7 @@ body {
   margin: 0;
   min-height: 100svh;
   font-variation-settings: 'slnt' 0;
-  animation: framerFadeIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) both;
+  animation: framerPageEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 :root {
@@ -225,73 +225,39 @@ p:empty {
 }
 
 /* view transitions */
+@keyframes framerPageExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98) translateY(-10px);
+  }
+}
+
+@keyframes framerPageEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
 
-  /* Keep page interactive while view transitions are running */
-  :root {
-    view-transition-name: none;
+  ::view-transition-old(root) {
+    animation: framerPageExit 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Have the root transition during page navigation */
-  html:active-view-transition-type(page-navigation),
-  html:active-view-transition-type(product-image-transition) {
-    view-transition-name: root-custom;
-  }
-
-  ::view-transition {
-    pointer-events: none;
-  }
-
-  html:active-view-transition-type(page-navigation) main[data-page-transition-enabled='true'] {
-    view-transition-name: main-content;
-  }
-
-  html:active-view-transition-type(page-navigation) main[data-product-transition='true'][data-template*='product'] {
-    view-transition-name: main-content;
-  }
-
-  ::view-transition-old(main-content) {
-    animation: var(--view-transition-old-main-content);
-  }
-
-  ::view-transition-new(main-content) {
-    animation: var(--view-transition-new-main-content);
-  }
-
-  html:active-view-transition-type(product-image-transition) {
-    [data-view-transition-type='product-image-transition'] {
-      view-transition-name: product-image-transition;
-    }
-
-    [data-view-transition-type='product-details'] {
-      view-transition-name: product-details;
-    }
-  }
-
-  ::view-transition-group(product-image-transition) {
-    z-index: 1;
-  }
-
-  ::view-transition-group(product-image-transition),
-  ::view-transition-group(product-details) {
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  ::view-transition-old(product-image-transition),
-  ::view-transition-new(product-image-transition) {
-    block-size: 100%;
-    overflow: hidden;
-    object-fit: cover;
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  ::view-transition-new(product-details) {
-    animation: var(--view-transition-new-main-content);
+  ::view-transition-new(root) {
+    animation: framerPageEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
 
@@ -1073,46 +1039,7 @@ ul[product-grid-view='zoom-out'] .product-grid__card > * {
   line-height: 1.2;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  :root:active-view-transition-type(product-grid) {
-    details[open] floating-panel-component {
-      view-transition-name: panel-content;
 
-      .checkbox *,
-      .facets__pill-label {
-        transition: none;
-      }
-
-      .facets--vertical & {
-        view-transition-name: none;
-      }
-    }
-
-    .product-grid {
-      view-transition-name: product-grid;
-    }
-
-    footer {
-      view-transition-name: footer;
-    }
-
-    .product-grid__item,
-    floating-panel-component {
-      transition: none;
-    }
-  }
-}
-
-::view-transition-group(panel-content) {
-  z-index: 1;
-}
-
-::view-transition-new(product-grid) {
-  animation-delay: 150ms;
-  animation-name: fadeInUp;
-  animation-duration: var(--animation-speed);
-  animation-timing-function: var(--animation-easing);
-}
 
 results-list[initialized] {
   .product-grid__item {
